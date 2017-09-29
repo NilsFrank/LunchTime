@@ -96,13 +96,18 @@
     <None Include="bin\Debug\LunchTime.Server.exe.config" />
     <None Include="bin\Debug\LunchTime.Server.vshost.exe.config" />
     <None Include="bin\Debug\LunchTime.Server.vshost.exe.manifest" />
+<<<<<<< HEAD
     <None Include="Content\Locations.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\Votes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-
+=======
+    <None Include="Content\Locations.json" />
+    <None Include="Content\User.json" />
+    <None Include="Content\Votes.json" />
+>>>>>>> 2b96939925b34a1c3ed6d3f8b2f57b99a1a58166
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Debug\LunchTime.Server.csprojResolveAssemblyReference.cache" />
     <None Include="packages.config" />

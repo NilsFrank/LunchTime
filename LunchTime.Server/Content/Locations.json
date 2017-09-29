@@ -1,0 +1,7 @@
+﻿{
+    "locations": [
+        { "name": "Test1", "type": "Pizza" },
+        { "name": "Test2", "type": "Burger" },
+        { "name": "Test3", "type": "Sushi" }
+    ]
+}

@@ -79,7 +79,26 @@ namespace LunchTime.Client
 
         private void Button_SendChatMessage_Click(object sender, EventArgs e)
         {
-            
+            if (!TextBox_ChatMessage.Text.Equals("") && !TextBox_Username.Text.Equals(""))
+            {
+                HubProxy.Invoke("Send", TextBox_ChatMessage.Text, new User() { guid = userID, username = TextBox_Username.Text });
+            }
+
+            TextBox_ChatMessage.Text = "";
+        }
+
+
+
+        private void Button_SendChatMessage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Button_SendChatMessage.PerformClick();
+
+                // these last two lines will stop the beep sound
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
         }
 
         #endregion
@@ -97,11 +116,10 @@ namespace LunchTime.Client
             Connection = new HubConnection(ServerURI);
             Connection.Closed += Connection_Closed;
             HubProxy = Connection.CreateHubProxy("MyHub");
-            //Handle incoming event from server: use Invoke to write to console from SignalR's thread
-            HubProxy.On<string, string>("AddMessage", (name,
-                                                       message) =>
+
+            HubProxy.On<LunchTime.Server.Model.Message>("addMessage", (message) =>
                                             this.Invoke((Action)(() =>
-                                                            RichTextBox_ChatMessages.AppendText(String.Format("{0}: {1}" + Environment.NewLine, name, message))
+                                                            ReceivedNewChatMessage(message.Username, message.MessageText, message.CreatedTimeStamp)
                                                         ))
                                        );
 
@@ -148,6 +166,7 @@ namespace LunchTime.Client
         {
             Button_SendChatMessage.Enabled = flag;
             Button_VoteForSelectedLocation.Enabled = flag;
+            ComboBox_Locations.Enabled = flag;
         }
 
 
@@ -162,7 +181,6 @@ namespace LunchTime.Client
         private void ReceivedAllLocations(Locations locations)
         {
             this.locations = locations;
-            RichTextBox_ChatMessages.AppendText("Received all locations: " + locations.locations.Count + Environment.NewLine);
 
             ComboBox_Locations.Items.Clear();
             ComboBox_Locations.Items.AddRange(locations.locations.Select(x => x.name).ToArray());
@@ -174,7 +192,6 @@ namespace LunchTime.Client
         private void ReceivedAllVotes(Votes votes)
         {
             this.votes = votes;
-            RichTextBox_ChatMessages.AppendText("Received all votes: " + votes.votes.Count + Environment.NewLine);
 
             string[] locationNames = locations.locations.Select(x => x.name).ToArray();
             int[] voteCounts = new int[locationNames.Length];
@@ -187,6 +204,8 @@ namespace LunchTime.Client
             Chart_LocationVotes.Titles.Clear();
             Chart_LocationVotes.Series.Clear();
             Chart_LocationVotes.Titles.Add("Locations");
+            Chart_LocationVotes.ChartAreas[0].AxisY.Maximum = Math.Max(5, voteCounts.Max());
+            Chart_LocationVotes.ChartAreas[0].AxisY.Minimum = 0;
 
             for (int i = 0; i < locationNames.Length; i++)
             {
@@ -194,19 +213,18 @@ namespace LunchTime.Client
 
                 series.Points.Add(voteCounts[i]);
             }
+
+            Chart_LocationVotes.Update();
         }
 
 
 
-        private void ReceivedNewChatMessage(string userName, string message)
+        private void ReceivedNewChatMessage(string userName, string message, DateTime timeStamp)
         {
-            RichTextBox_ChatMessages.AppendText(userName + ": " + message);
+            RichTextBox_ChatMessages.AppendText(userName + " (" + timeStamp.ToString("hh:mm:ss") + "): " + message + Environment.NewLine);
         }
 
         #endregion
 
-        
-
-        
     }
 }

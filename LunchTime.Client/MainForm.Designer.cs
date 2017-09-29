@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.RichTextBox_ChatMessages = new System.Windows.Forms.RichTextBox();
             this.TextBox_ChatMessage = new System.Windows.Forms.TextBox();
             this.Button_SendChatMessage = new System.Windows.Forms.Button();
@@ -57,6 +57,7 @@
             this.TextBox_ChatMessage.Name = "TextBox_ChatMessage";
             this.TextBox_ChatMessage.Size = new System.Drawing.Size(681, 20);
             this.TextBox_ChatMessage.TabIndex = 1;
+            this.TextBox_ChatMessage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button_SendChatMessage_KeyDown);
             // 
             // Button_SendChatMessage
             // 
@@ -67,6 +68,7 @@
             this.Button_SendChatMessage.Text = "Send";
             this.Button_SendChatMessage.UseVisualStyleBackColor = true;
             this.Button_SendChatMessage.Click += new System.EventHandler(this.Button_SendChatMessage_Click);
+            this.Button_SendChatMessage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button_SendChatMessage_KeyDown);
             // 
             // ComboBox_Locations
             // 
@@ -89,16 +91,16 @@
             // 
             // Chart_LocationVotes
             // 
-            chartArea2.Name = "ChartArea1";
-            this.Chart_LocationVotes.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.Chart_LocationVotes.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.Chart_LocationVotes.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.Chart_LocationVotes.Legends.Add(legend4);
             this.Chart_LocationVotes.Location = new System.Drawing.Point(12, 12);
             this.Chart_LocationVotes.Name = "Chart_LocationVotes";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.Chart_LocationVotes.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.Chart_LocationVotes.Series.Add(series4);
             this.Chart_LocationVotes.Size = new System.Drawing.Size(662, 425);
             this.Chart_LocationVotes.TabIndex = 5;
             this.Chart_LocationVotes.Text = "chart1";

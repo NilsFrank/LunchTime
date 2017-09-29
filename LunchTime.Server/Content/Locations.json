@@ -1,7 +1,7 @@
 ﻿{
     "locations": [
-        { "name": "Test1", "type": "Pizza" },
-        { "name": "Test2", "type": "Burger" },
-        { "name": "Test3", "type": "Sushi" }
+        { "name": "Pizza Carina", "type": "Pizza" },
+        { "name": "Fletchers", "type": "Burger" },
+        { "name": "Asia-Mann", "type": "Sushi" }
     ]
 }

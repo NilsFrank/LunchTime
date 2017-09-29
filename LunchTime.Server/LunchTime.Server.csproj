@@ -94,8 +94,12 @@
     <None Include="bin\Debug\LunchTime.Server.exe.config" />
     <None Include="bin\Debug\LunchTime.Server.vshost.exe.config" />
     <None Include="bin\Debug\LunchTime.Server.vshost.exe.manifest" />
-    <None Include="Content\Locations.json" />
-    <None Include="Content\Votes.json" />
+    <None Include="Content\Locations.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Votes.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Debug\LunchTime.Server.csprojResolveAssemblyReference.cache" />
     <None Include="packages.config" />

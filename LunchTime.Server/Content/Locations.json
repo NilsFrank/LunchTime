@@ -1,7 +1,12 @@
 ﻿{
     "locations": [
-        { "name": "Pizza Carina", "type": "Pizza" },
+        { "name": "Pizza Olbia", "type": "Pizza" },
         { "name": "Fletchers", "type": "Burger" },
-        { "name": "Asia-Mann", "type": "Sushi" }
+        { "name": "Asia-Mann", "type": "Sushi" },
+        { "name": "Best Worscht", "type": "Wurst" },
+        { "name": "Döner", "type": "Döner" },
+        { "name": "La Argentina", "type": "Mexikaner" },
+        { "name": "Rewe", "type": "Rewe" },
+        { "name": "Nichts", "type": "Diät" }
     ]
 }

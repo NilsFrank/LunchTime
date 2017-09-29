@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.RichTextBox_ChatMessages = new System.Windows.Forms.RichTextBox();
             this.TextBox_ChatMessage = new System.Windows.Forms.TextBox();
             this.Button_SendChatMessage = new System.Windows.Forms.Button();
@@ -38,6 +38,7 @@
             this.Button_VoteForSelectedLocation = new System.Windows.Forms.Button();
             this.Chart_LocationVotes = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.TextBox_Username = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Chart_LocationVotes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,16 +92,16 @@
             // 
             // Chart_LocationVotes
             // 
-            chartArea4.Name = "ChartArea1";
-            this.Chart_LocationVotes.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.Chart_LocationVotes.Legends.Add(legend4);
+            chartArea6.Name = "ChartArea1";
+            this.Chart_LocationVotes.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.Chart_LocationVotes.Legends.Add(legend6);
             this.Chart_LocationVotes.Location = new System.Drawing.Point(12, 12);
             this.Chart_LocationVotes.Name = "Chart_LocationVotes";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.Chart_LocationVotes.Series.Add(series4);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.Chart_LocationVotes.Series.Add(series6);
             this.Chart_LocationVotes.Size = new System.Drawing.Size(662, 425);
             this.Chart_LocationVotes.TabIndex = 5;
             this.Chart_LocationVotes.Text = "chart1";
@@ -113,11 +114,21 @@
             this.TextBox_Username.TabIndex = 6;
             this.TextBox_Username.Text = "Username";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(680, 424);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "© P. Dörr, F. Nils";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 669);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.TextBox_Username);
             this.Controls.Add(this.Chart_LocationVotes);
             this.Controls.Add(this.Button_VoteForSelectedLocation);
@@ -126,7 +137,7 @@
             this.Controls.Add(this.TextBox_ChatMessage);
             this.Controls.Add(this.RichTextBox_ChatMessages);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "LunchTime ™";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Chart_LocationVotes)).EndInit();
             this.ResumeLayout(false);
@@ -143,5 +154,6 @@
         private System.Windows.Forms.Button Button_VoteForSelectedLocation;
         private System.Windows.Forms.DataVisualization.Charting.Chart Chart_LocationVotes;
         private System.Windows.Forms.TextBox TextBox_Username;
+        private System.Windows.Forms.Label label1;
     }
 }

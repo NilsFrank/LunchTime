@@ -1,0 +1,7 @@
+﻿{
+    "votes": [
+        { "location": "Test1", "user": "User1" },
+        { "location": "Test2", "user": "User2" },
+        { "location": "Test3", "user": "User3" }
+    ]
+}

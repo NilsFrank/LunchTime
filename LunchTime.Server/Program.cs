@@ -45,7 +45,7 @@ namespace LunchTime.Server
         private const string locationPath = "Content/Locations.json";
         private const string userPath = "Content/User.json";
 
-        public List<User> Users { get; set; }
+        public List<User> Users = new List<User>();
 
         public void Send(string message,
                          User user)

@@ -45,7 +45,8 @@ namespace LunchTime.Server
         private const string locationPath = "Content/Locations.json";
         private const string userPath = "Content/User.json";
 
-        public void Send(string message, User user)
+        public void Send(string message,
+                         User user)
         {
             var allUsers = Helper.GetAllFromJson<Users>(userPath);
 
@@ -66,7 +67,7 @@ namespace LunchTime.Server
                 MessageText = message,
                 Username = user.username
             };
-            
+
             Clients.All.addMessage(newMessage);
         }
 
@@ -92,6 +93,32 @@ namespace LunchTime.Server
         {
             var votes = Helper.GetAllFromJson<Votes>(votePath);
             Clients.Caller.getAllVotes(votes);
+        }
+
+        public void RegisterUser(User user)
+        {
+            var allUsers = Helper.GetAllFromJson<Users>(userPath);
+
+            var hasUser = allUsers.users.Any(x => x.guid == user.guid);
+
+            if (!hasUser)
+            {
+                allUsers.users.Add(user);
+                TextWriter writer = null;
+                try
+                {
+                    writer = new StreamWriter(userPath, false);
+                    var jsonString = JsonConvert.SerializeObject(allUsers);
+                    writer.Write(jsonString);
+                }
+                finally
+                {
+                    if (writer != null)
+                    {
+                        writer.Close();
+                    }
+                }
+            }
         }
 
         public void Vote(Location location,

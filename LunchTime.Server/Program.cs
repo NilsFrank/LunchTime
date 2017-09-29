@@ -109,17 +109,11 @@ namespace LunchTime.Server
                          User user)
         {
             var votes = Helper.GetAllFromJson<Votes>(votePath);
-            Votes newVotes = Helper.GetAllFromJson<Votes>(votePath);
 
-            foreach (var vote in votes.votes)
-            {
-                if (vote.guid == user.guid)
-                {
-                    newVotes.votes.Remove(vote);
-                }
-            }
+            votes.votes.RemoveAll(x => x.guid == user.guid);
 
-            newVotes.votes.Add(new Vote
+
+            votes.votes.Add(new Vote
             {
                 location = location,
                 guid = user.guid
@@ -129,7 +123,7 @@ namespace LunchTime.Server
             try
             {
                 writer = new StreamWriter(votePath, false);
-                var jsonString = JsonConvert.SerializeObject(newVotes);
+                var jsonString = JsonConvert.SerializeObject(votes);
                 writer.Write(jsonString);
             }
             finally
@@ -140,7 +134,7 @@ namespace LunchTime.Server
                 }
             }
 
-            Clients.All.vote(newVotes);
+            Clients.All.vote(votes);
         }
     }
 

@@ -72,7 +72,7 @@ namespace LunchTime.Client
 
         private void Button_VoteForSelectedLocation_Click(object sender, EventArgs e)
         {
-            HubProxy.Invoke("Vote", locations.locations[0], userID.ToString());
+            HubProxy.Invoke("Vote", locations.locations.First(x => x.name.Equals(ComboBox_Locations.SelectedItem.ToString())), new User() { guid = userID, username = TextBox_Username.Text });
         }
 
 
@@ -117,12 +117,18 @@ namespace LunchTime.Client
                                                         ))
                                        );
 
+            HubProxy.On<Votes>("vote", (votes) =>
+                                            this.Invoke((Action)(() =>
+                                                            ReceivedAllVotes(votes)
+                                                        ))
+                                       );
+
             try
             {
                 await Connection.Start();
                 await HubProxy.Invoke("GetAllLocations");
                 await HubProxy.Invoke("GetAllVotes");
-                //await HubProxy.Invoke("RegisterUser", new User() { guid = userID, username = "" });
+                await HubProxy.Invoke("RegisterUser", new User() { guid = userID, username = "" });
             }
             catch (HttpRequestException)
             {

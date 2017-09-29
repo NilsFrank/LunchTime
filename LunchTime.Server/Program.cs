@@ -109,7 +109,7 @@ namespace LunchTime.Server
                          User user)
         {
             var votes = Helper.GetAllFromJson<Votes>(votePath);
-            Votes newVotes = votes;
+            Votes newVotes = Helper.GetAllFromJson<Votes>(votePath);
 
             foreach (var vote in votes.votes)
             {
@@ -150,6 +150,7 @@ namespace LunchTime.Server
         {
             StreamReader reader = new StreamReader(path);
             T jsonObject = JsonConvert.DeserializeObject<T>(reader.ReadToEnd());
+            reader.Close();
 
             return jsonObject;
         }

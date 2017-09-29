@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LunchTime.Server.Model;
@@ -42,11 +43,11 @@ namespace LunchTime.Server
     {
         private const string votePath = "Content/Votes.json";
         private const string locationPath = "Content/Locations.json";
+        private const string userPath = "Content/User.json";
 
-        public void Send(string name,
-                         string message)
+        public void Send(Message message)
         {
-            Clients.All.addMessage(name, message);
+            Clients.All.addMessage(message);
         }
 
         public override Task OnConnected()
@@ -64,24 +65,24 @@ namespace LunchTime.Server
         public void GetAllLocations()
         {
             var locations = Helper.GetAllFromJson<Location>(locationPath);
-            Clients.Caller.addMessage(locations);
+            Clients.Caller.getAllLocations(locations);
         }
 
         public void GetAllVotes()
         {
             var votes = Helper.GetAllFromJson<Vote>(votePath);
-            Clients.Caller.addMessage(votes);
+            Clients.Caller.getAllVotes(votes);
         }
 
         public void Vote(Location location,
-                         string user)
+                         Guid user)
         {
             var votes = Helper.GetAllFromJson<Vote>(votePath);
             List<Vote> newVotes = votes;
 
             foreach (var vote in votes)
             {
-                if (vote.User == user)
+                if (vote.Guid == user)
                 {
                     newVotes.Remove(vote);
                 }
@@ -90,7 +91,7 @@ namespace LunchTime.Server
             newVotes.Add(new Vote
             {
                 Location = location,
-                User = user
+                Guid = user
             });
 
             TextWriter writer = null;
@@ -108,7 +109,14 @@ namespace LunchTime.Server
                 }
             }
 
-            Clients.All.addMessage(newVotes);
+            Clients.All.vote(newVotes);
+        }
+
+        public void GetUser(Guid guid)
+        {
+            var user = Helper.GetUserForGuid(userPath, guid);
+
+            Clients.Caller.getUser(user);
         }
     }
 
@@ -120,6 +128,14 @@ namespace LunchTime.Server
             List<T> jsonObject = JsonConvert.DeserializeObject<List<T>>(reader.ReadToEnd());
 
             return jsonObject;
+        }
+
+        public static User GetUserForGuid(string path,
+                                          Guid guid)
+        {
+            var users = GetAllFromJson<User>(path);
+
+            return users.FirstOrDefault(x => x.Guid == guid);
         }
     }
 }

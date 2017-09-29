@@ -2,10 +2,10 @@
 
 namespace LunchTime.Server.Model
 {
-    public class Vote
+    public class User
     {
-        public Location Location { get; set; }
-
         public Guid Guid { get; set; }
+
+        public string Username { get; set; }
     }
 }

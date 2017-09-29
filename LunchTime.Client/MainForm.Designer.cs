@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.RichTextBox_ChatMessages = new System.Windows.Forms.RichTextBox();
             this.TextBox_ChatMessage = new System.Windows.Forms.TextBox();
             this.Button_SendChatMessage = new System.Windows.Forms.Button();
             this.ComboBox_Locations = new System.Windows.Forms.ComboBox();
             this.Button_VoteForSelectedLocation = new System.Windows.Forms.Button();
             this.Chart_LocationVotes = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.TextBox_Username = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Chart_LocationVotes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,6 +45,7 @@
             // 
             this.RichTextBox_ChatMessages.Location = new System.Drawing.Point(12, 443);
             this.RichTextBox_ChatMessages.Name = "RichTextBox_ChatMessages";
+            this.RichTextBox_ChatMessages.ReadOnly = true;
             this.RichTextBox_ChatMessages.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.RichTextBox_ChatMessages.Size = new System.Drawing.Size(868, 188);
             this.RichTextBox_ChatMessages.TabIndex = 0;
@@ -53,7 +55,7 @@
             // 
             this.TextBox_ChatMessage.Location = new System.Drawing.Point(12, 637);
             this.TextBox_ChatMessage.Name = "TextBox_ChatMessage";
-            this.TextBox_ChatMessage.Size = new System.Drawing.Size(787, 20);
+            this.TextBox_ChatMessage.Size = new System.Drawing.Size(681, 20);
             this.TextBox_ChatMessage.TabIndex = 1;
             // 
             // Button_SendChatMessage
@@ -68,6 +70,7 @@
             // 
             // ComboBox_Locations
             // 
+            this.ComboBox_Locations.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox_Locations.FormattingEnabled = true;
             this.ComboBox_Locations.Location = new System.Drawing.Point(680, 12);
             this.ComboBox_Locations.Name = "ComboBox_Locations";
@@ -86,25 +89,34 @@
             // 
             // Chart_LocationVotes
             // 
-            chartArea3.Name = "ChartArea1";
-            this.Chart_LocationVotes.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.Chart_LocationVotes.Legends.Add(legend3);
+            chartArea2.Name = "ChartArea1";
+            this.Chart_LocationVotes.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.Chart_LocationVotes.Legends.Add(legend2);
             this.Chart_LocationVotes.Location = new System.Drawing.Point(12, 12);
             this.Chart_LocationVotes.Name = "Chart_LocationVotes";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.Chart_LocationVotes.Series.Add(series3);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.Chart_LocationVotes.Series.Add(series2);
             this.Chart_LocationVotes.Size = new System.Drawing.Size(662, 425);
             this.Chart_LocationVotes.TabIndex = 5;
             this.Chart_LocationVotes.Text = "chart1";
+            // 
+            // TextBox_Username
+            // 
+            this.TextBox_Username.Location = new System.Drawing.Point(699, 637);
+            this.TextBox_Username.Name = "TextBox_Username";
+            this.TextBox_Username.Size = new System.Drawing.Size(100, 20);
+            this.TextBox_Username.TabIndex = 6;
+            this.TextBox_Username.Text = "Username";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 669);
+            this.Controls.Add(this.TextBox_Username);
             this.Controls.Add(this.Chart_LocationVotes);
             this.Controls.Add(this.Button_VoteForSelectedLocation);
             this.Controls.Add(this.ComboBox_Locations);
@@ -128,5 +140,6 @@
         private System.Windows.Forms.ComboBox ComboBox_Locations;
         private System.Windows.Forms.Button Button_VoteForSelectedLocation;
         private System.Windows.Forms.DataVisualization.Charting.Chart Chart_LocationVotes;
+        private System.Windows.Forms.TextBox TextBox_Username;
     }
 }

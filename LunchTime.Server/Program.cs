@@ -45,9 +45,29 @@ namespace LunchTime.Server
         private const string locationPath = "Content/Locations.json";
         private const string userPath = "Content/User.json";
 
-        public void Send(Message message)
+        public void Send(string message, User user)
         {
-            Clients.All.addMessage(message);
+            var allUsers = Helper.GetAllFromJson<Users>(userPath);
+
+            foreach (var checkUser in allUsers.users)
+            {
+                if (checkUser.guid == user.guid)
+                {
+                    if (checkUser.username != user.username)
+                    {
+                        checkUser.username = user.username;
+                    }
+                }
+            }
+
+            var newMessage = new Message
+            {
+                CreatedTimeStamp = DateTime.Now,
+                MessageText = message,
+                Username = user.username
+            };
+            
+            Clients.All.addMessage(newMessage);
         }
 
         public override Task OnConnected()
@@ -75,14 +95,14 @@ namespace LunchTime.Server
         }
 
         public void Vote(Location location,
-                         Guid user)
+                         User user)
         {
             var votes = Helper.GetAllFromJson<Votes>(votePath);
             Votes newVotes = votes;
 
             foreach (var vote in votes.votes)
             {
-                if (vote.guid == user)
+                if (vote.guid == user.guid)
                 {
                     newVotes.votes.Remove(vote);
                 }
@@ -91,7 +111,7 @@ namespace LunchTime.Server
             newVotes.votes.Add(new Vote
             {
                 location = location,
-                guid = user
+                guid = user.guid
             });
 
             TextWriter writer = null;

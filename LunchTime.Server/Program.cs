@@ -45,12 +45,12 @@ namespace LunchTime.Server
         private const string locationPath = "Content/Locations.json";
         private const string userPath = "Content/User.json";
 
+        public List<User> Users { get; set; }
+
         public void Send(string message,
                          User user)
         {
-            var allUsers = Helper.GetAllFromJson<Users>(userPath);
-
-            foreach (var checkUser in allUsers.users)
+            foreach (var checkUser in Users)
             {
                 if (checkUser.guid == user.guid)
                 {
@@ -97,27 +97,11 @@ namespace LunchTime.Server
 
         public void RegisterUser(User user)
         {
-            var allUsers = Helper.GetAllFromJson<Users>(userPath);
-
-            var hasUser = allUsers.users.Any(x => x.guid == user.guid);
+            var hasUser = Users.Any(x => x.guid == user.guid);
 
             if (!hasUser)
             {
-                allUsers.users.Add(user);
-                TextWriter writer = null;
-                try
-                {
-                    writer = new StreamWriter(userPath, false);
-                    var jsonString = JsonConvert.SerializeObject(allUsers);
-                    writer.Write(jsonString);
-                }
-                finally
-                {
-                    if (writer != null)
-                    {
-                        writer.Close();
-                    }
-                }
+                Users.Add(user);
             }
         }
 
@@ -158,13 +142,6 @@ namespace LunchTime.Server
 
             Clients.All.vote(newVotes);
         }
-
-        public void GetUser(Guid guid)
-        {
-            var user = Helper.GetUserForGuid(userPath, guid);
-
-            Clients.Caller.getUser(user);
-        }
     }
 
     public static class Helper
@@ -175,14 +152,6 @@ namespace LunchTime.Server
             T jsonObject = JsonConvert.DeserializeObject<T>(reader.ReadToEnd());
 
             return jsonObject;
-        }
-
-        public static User GetUserForGuid(string path,
-                                          Guid guid)
-        {
-            var users = GetAllFromJson<Users>(path);
-
-            return users.users.FirstOrDefault(x => x.guid == guid);
         }
     }
 }

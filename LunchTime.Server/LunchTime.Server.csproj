@@ -99,9 +99,6 @@
     <None Include="Content\Locations.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Content\User.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Content\Votes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

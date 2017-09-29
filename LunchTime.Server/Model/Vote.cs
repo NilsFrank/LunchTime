@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LunchTime.Server.Model
 {
     public class Vote
     {
-        public Location Location { get; set; }
+        public Location location { get; set; }
+        public Guid guid { get; set; }
+    }
 
-        public Guid Guid { get; set; }
+    public class Votes
+    {
+        public List<Vote> votes { get; set; }
     }
 }

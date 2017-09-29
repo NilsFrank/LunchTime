@@ -1,10 +1,15 @@
-﻿namespace LunchTime.Server.Model
+﻿using System.Collections.Generic;
+
+namespace LunchTime.Server.Model
 {
     public class Location
     {
-        public string Name { get; set; }
+        public string name { get; set; }
+        public string type { get; set; }
+    }
 
-        public string Type { get; set; }
-
+    public class Locations
+    {
+        public List<Location> locations { get; set; }
     }
 }

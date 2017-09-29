@@ -1,7 +1,7 @@
 ﻿{
     "users": [
-        { "guid": "Test1", "username": "User1" },
-        { "guid": "Test2", "username": "User2" },
-        { "guid": "Test3", "username": "User3" }
+        { "guid": "1e92406b-4c71-4ba7-af9b-be50ac7ba2f1", "username": "User1" },
+        { "guid": "cbc51910-042a-4288-8cfa-2679e6a946e6", "username": "User2" },
+        { "guid": "1c135100-6ca6-4244-8127-9bf25f21fd87", "username": "User3" }
     ]
 }

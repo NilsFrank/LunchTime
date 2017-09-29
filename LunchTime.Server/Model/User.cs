@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LunchTime.Server.Model
 {
     public class User
     {
-        public Guid Guid { get; set; }
+        public Guid guid { get; set; }
+        public string username { get; set; }
+    }
 
-        public string Username { get; set; }
+    public class Users
+    {
+        public List<User> users { get; set; }
     }
 }

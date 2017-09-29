@@ -1,7 +1,7 @@
 ﻿{
     "votes": [
-        { "location": "Test1", "guid": "User1" },
-        { "location": "Test2", "guid": "User2" },
-        { "location": "Test3", "guid": "User3" }
+        { "location": { "name": "Test1", "type": "Pizza" }, "guid": "1e92406b-4c71-4ba7-af9b-be50ac7ba2f1" },
+        { "location": { "name": "Test1", "type": "Pizza" }, "guid": "cbc51910-042a-4288-8cfa-2679e6a946e6" },
+        { "location": { "name": "Test1", "type": "Pizza" }, "guid": "1c135100-6ca6-4244-8127-9bf25f21fd87" }
     ]
 }

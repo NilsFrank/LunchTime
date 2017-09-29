@@ -64,34 +64,34 @@ namespace LunchTime.Server
 
         public void GetAllLocations()
         {
-            var locations = Helper.GetAllFromJson<Location>(locationPath);
+            var locations = Helper.GetAllFromJson<Locations>(locationPath);
             Clients.Caller.getAllLocations(locations);
         }
 
         public void GetAllVotes()
         {
-            var votes = Helper.GetAllFromJson<Vote>(votePath);
+            var votes = Helper.GetAllFromJson<Votes>(votePath);
             Clients.Caller.getAllVotes(votes);
         }
 
         public void Vote(Location location,
                          Guid user)
         {
-            var votes = Helper.GetAllFromJson<Vote>(votePath);
-            List<Vote> newVotes = votes;
+            var votes = Helper.GetAllFromJson<Votes>(votePath);
+            Votes newVotes = votes;
 
-            foreach (var vote in votes)
+            foreach (var vote in votes.votes)
             {
-                if (vote.Guid == user)
+                if (vote.guid == user)
                 {
-                    newVotes.Remove(vote);
+                    newVotes.votes.Remove(vote);
                 }
             }
 
-            newVotes.Add(new Vote
+            newVotes.votes.Add(new Vote
             {
-                Location = location,
-                Guid = user
+                location = location,
+                guid = user
             });
 
             TextWriter writer = null;
@@ -122,10 +122,10 @@ namespace LunchTime.Server
 
     public static class Helper
     {
-        public static List<T> GetAllFromJson<T>(string path)
+        public static T GetAllFromJson<T>(string path)
         {
             StreamReader reader = new StreamReader(path);
-            List<T> jsonObject = JsonConvert.DeserializeObject<List<T>>(reader.ReadToEnd());
+            T jsonObject = JsonConvert.DeserializeObject<T>(reader.ReadToEnd());
 
             return jsonObject;
         }
@@ -133,9 +133,9 @@ namespace LunchTime.Server
         public static User GetUserForGuid(string path,
                                           Guid guid)
         {
-            var users = GetAllFromJson<User>(path);
+            var users = GetAllFromJson<Users>(path);
 
-            return users.FirstOrDefault(x => x.Guid == guid);
+            return users.users.FirstOrDefault(x => x.guid == guid);
         }
     }
 }
